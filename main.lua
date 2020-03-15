@@ -1,7 +1,8 @@
 --[[
 
 SnakeLua - v0.1
-Julien Fougery
+@Krockdur #JF72
+git push -u origin master
 
 Versions :
 lua : 5.35
