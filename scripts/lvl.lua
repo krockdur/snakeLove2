@@ -52,3 +52,7 @@ function rand_apple()
   tab_lvl[new_apple_y][new_apple_x] = 2
   
 end
+
+function add_wall()
+
+end
