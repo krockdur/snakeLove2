@@ -1,7 +1,7 @@
 --[[
 
 SnakeLua - v0.1
-@Krockdur #JF72
+@JF72
 git push -u origin master
 
 Versions :
@@ -14,6 +14,7 @@ love2d : 	11.3
 require('scripts.const')
 require('scripts.lvl')
 require('scripts.snake')
+require('scripts.score')
 
 -- configuration
   -- active les traces dans la console
@@ -158,7 +159,20 @@ function love.update(dt)
       end
       
     end
+    
+  elseif LOSE then
+    
+    -- Write file's score
+    if score_write_time then
+      local score = NB_APPLE_EAT + SNAKE_LENGHT
+      write_score("\n")
+      write_score(score)      
+      score_write_time = false
+    end
+    
   end
+  
+  
 end
 
 

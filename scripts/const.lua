@@ -20,3 +20,7 @@ CELERITY_MAX = 0.06
 
 PLAY = false
 CHOICE_MENU_POSITION = "play"
+
+FILE_SCORE = "scores.txt"
+
+score_write_time = true -- necessary to write score once time
