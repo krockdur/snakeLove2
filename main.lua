@@ -16,6 +16,8 @@ require('scripts.lvl')
 require('scripts.snake')
 require('scripts.score')
 
+
+
 -- configuration
   -- active les traces dans la console
 io.stdout:setvbuf('no')
@@ -29,6 +31,10 @@ if arg[#arg] == '-debug' then require('mobdebug').start() end
 
 -- Initilisation
 function love.load()
+  
+  -- chargement du niveay
+  init_lvl()
+  
   -- définition de la fenêtre de jeu
   love.window.setMode(WIN_WIDTH, WIN_HEIGHT, {highdpi = true, fullscreen = false})
   
@@ -39,6 +45,10 @@ function love.load()
   sprite_food = love.graphics.newImage("assets/tile_food.png")
   sprite_choice = love.graphics.newImage("assets/choix.png")
   --
+  
+  -- Sounds
+  sound_capture_apple = love.audio.newSource("assets/capture_apple.mp3", "static")
+  sound_lose = love.audio.newSource("assets/lose.mp3", "static")
   
   -- UI
   font = love.graphics.newFont("assets/SnesItalic-vmAPZ.ttf", 40)
@@ -164,10 +174,12 @@ function love.update(dt)
     
     -- Write file's score
     if score_write_time then
+      love.audio.play(sound_lose)
       local score = NB_APPLE_EAT + SNAKE_LENGHT
       write_score("\n")
-      write_score(score)      
+      write_score(score)
       score_write_time = false
+      CELERITY = 0.15
     end
     
   end
@@ -216,6 +228,19 @@ function love.keypressed(key)
       direction = "down"
     end
   end
+  
+  if LOSE then
+      if key == 'r' then
+        -- restart game
+        LOSE = false
+        PLAY = true
+        load_snake()
+        direction = "right"
+        init_lvl()
+        NB_APPLE_EAT = 0
+      end
+  end
+  
 end
 
 function love.keyreleased(key)

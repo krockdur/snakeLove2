@@ -168,6 +168,7 @@ function check_apple()
       NB_APPLE_EAT = NB_APPLE_EAT + 1
       SNAKE_LENGHT = #tab_snake
       rand_apple()
+      love.audio.play(sound_capture_apple)
       
       -- if eat apple, then inscrease snake's cel
       if CELERITY >= CELERITY_MAX then
