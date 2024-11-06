@@ -9,7 +9,7 @@ A tiny game made with Love2D.
 
 ### How to play
 
-- Juste install Love2D (get from [herre](https://love2d.org/)
+- Juste install Love2D (get from [here](https://love2d.org/ )
 
 - Run this command from outside the folder : love path..to..SnakeLove2..folder
 
